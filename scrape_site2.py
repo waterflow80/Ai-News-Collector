@@ -3,9 +3,10 @@
 from news import News
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
+#from selenium.webdriver.firefox.options import Options
 import time
 from datetime import datetime
+import os
 
 url = "https://news.mit.edu/topic/artificial-intelligence2?page="
 page_num = 0
@@ -13,9 +14,12 @@ base_url = "https://news.mit.edu"
 # depth is the number of pages to go through in the site(1,2,3,...)
 
 def get_news2(depth=1):
-  options = Options()
+  options = webdriver.ChromeOptions()
+  options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-sh-usage')
   options.add_argument('--headless') # run selenium in the background
-  driver = webdriver.Firefox(options=options)
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options) 
   news_list = [] # list of News objects
   
   for i in range(depth):
