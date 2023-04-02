@@ -10,9 +10,9 @@ url = "https://www.sciencedaily.com/news/computers_math/artificial_intelligence/
 base_url = "https://www.sciencedaily.com"
 
 def get_news(depth:int=1):
-  options = Options()
-  options.add_argument('--headless') # run selenium in the background
-  driver = webdriver.Firefox(options=options)
+  #options = Options()
+  #options.add_argument('--headless') # run selenium in the background
+  driver = webdriver.Firefox()
   driver.get(url + str(depth))  
 
   news_list = [] # list of News objects
