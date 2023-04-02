@@ -13,9 +13,9 @@ base_url = "https://news.mit.edu"
 # depth is the number of pages to go through in the site(1,2,3,...)
 
 def get_news2(depth=1):
-  #options = Options()
-  #options.add_argument('--headless') # run selenium in the background
-  driver = webdriver.Firefox()
+  options = Options()
+  options.add_argument('--headless') # run selenium in the background
+  driver = webdriver.Firefox(executable_path='./firefox', options=options)
   news_list = [] # list of News objects
   
   for i in range(depth):
