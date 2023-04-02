@@ -39,5 +39,3 @@ def get_news2(depth=1):
       
   return news_list
 
-for elt in get_news2(1):
-  pass
