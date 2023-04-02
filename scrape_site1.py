@@ -2,17 +2,21 @@
 from news import News
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
+#from selenium.webdriver.firefox.options import Options
 import time
 from datetime import datetime
+import os
 
 url = "https://www.sciencedaily.com/news/computers_math/artificial_intelligence/#page="
 base_url = "https://www.sciencedaily.com"
 
 def get_news(depth:int=1):
-  options = Options()
+  options = webdriver.ChromeOptions()
+  options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-sh-usage')
   options.add_argument('--headless') # run selenium in the background
-  driver = webdriver.Firefox(options=options)  
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)  
   driver.get(url + str(depth))  
 
   news_list = [] # list of News objects
